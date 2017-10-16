@@ -1,0 +1,11 @@
+version: "2"
+services:
+  server:
+    build:
+      context: ../../containers/server
+      args:
+        GOCD_VERSION: ${GOCD_VERSION}
+    image: gocd-server:${GOCD_VERSION}
+    ports:
+      - "8153:8153"
+      - "8154:8154"

@@ -1,0 +1,4 @@
+version: "2"
+services:
+  agent:
+    image: gocd/gocd-agent-${GOCD_AGENT_CONTAINER}:${GOCD_VERSION}
