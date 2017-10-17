@@ -1,0 +1,87 @@
+pipelines:
+  - group: build-deploy
+    label_template: build-qa
+    pipeline_template: build
+    pipeline:
+      name: fetch
+      materials:
+        - type: git
+          attributes:
+            url: git@github.com:gregorskii/gocd-test.git
+            branch: master
+            auto_update: false
+  - group: build-deploy
+    pipeline_template: deploy
+    pipeline:
+      label_template: deploy
+      name: deploy-qa
+      materials:
+        - type: dependency
+          attributes:
+            pipeline: build
+            stage: Build
+            auto_update: true
+
+templates:
+  build:
+    pipeline:
+      stages:
+        - name: Build
+          jobs:
+            - name: prep
+              artifacts:
+                - source: dist
+                  type: build
+                - source: config
+                  type: build
+              tasks:
+                - type: exec
+                  attributes:
+                      command: /bin/bash
+                      arguments:
+                        - mkdir dist
+                - type: exec
+                  attributes:
+                      command: /bin/bash
+                      arguments:
+                        - mkdir config
+            - name: build
+              artifacts:
+                - source: dist
+                  type: build
+                - source: config
+                  type: build
+              tasks:
+                - type: exec
+                  attributes:
+                    command: /bin/bash
+                    arguments:
+                      - echo "console.log(\"a build\");" > dist/index.js
+                - type: exec
+                  attributes:
+                    command: /bin/bash
+                    arguments:
+                      - echo "ENVIRONMENT_VARIABLE=cats" > config/.env
+
+  deploy:
+    pipline:
+      stages:
+        - name: Deploy
+          jobs:
+            - name: deploy
+              artifacts:
+                - source: dist
+                  type: build
+                - source: config
+                  type: build
+            tasks:
+              - type: exec
+                attributes:
+                  command: /bin/bash
+                  arguments:
+                    - echo "This would deploy:"
+                    - cat dist/index.js
+                    - cat config/.env
+
+
+

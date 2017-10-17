@@ -14,3 +14,7 @@ COPY ./keys/id_rsa.pub /home/go/.ssh/id_rsa.pub
 RUN chown -R go:go /home/go/.ssh/ && \
     chmod -R 400 /home/go/.ssh/id_rsa && \
     chmod -R 400 /home/go/.ssh/id_rsa.pub
+
+COPY ./config/cruise-config.xml /godata/config/cruise-config.xml
+
+RUN chown -R go:go /godata/config
