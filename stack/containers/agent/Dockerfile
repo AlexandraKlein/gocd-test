@@ -1,9 +1,7 @@
 ARG GOCD_VERSION
+ARG GOCD_AGENT_CONTAINER
 
-FROM gocd/gocd-server:${GOCD_VERSION}
-
-COPY ./plugins/ /godata/plugins/external/
-RUN chown -R 1000 /godata/plugins/external
+FROM gocd/gocd-agent-${GOCD_AGENT_CONTAINER}:${GOCD_VERSION}
 
 RUN mkdir /home/go/.ssh && \
     ssh-keyscan github.com > /home/go/.ssh/known_hosts

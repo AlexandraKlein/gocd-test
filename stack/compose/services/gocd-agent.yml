@@ -1,4 +1,9 @@
 version: "2"
 services:
   agent:
-    image: gocd/gocd-agent-${GOCD_AGENT_CONTAINER}:${GOCD_VERSION}
+    build:
+      context: ../../containers/agent
+      args:
+        GOCD_VERSION: ${GOCD_VERSION}
+        GOCD_AGENT_CONTAINER: ${GOCD_AGENT_CONTAINER}
+    image: gocd-agent:${GOCD_VERSION}
