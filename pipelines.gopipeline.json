@@ -1,0 +1,115 @@
+{
+  "_links": {
+    "doc": {
+      "href": "https://api.gocd.org/#pipeline-config"
+    },
+    "find": {
+      "href": "https://ci.example.com/go/api/admin/pipelines/:name"
+    },
+    "self": {
+      "href": "https://ci.example.com/go/api/admin/pipelines/my_pipeline"
+    }
+  },
+  "enable_pipeline_locking": false,
+  "environment_variables": [],
+  "label_template": "${COUNT}",
+  "materials": [
+    {
+      "attributes": {
+        "auto_update": true,
+        "branch": "master",
+        "destination": "code",
+        "filter": {
+          "ignore": [
+            "**/*.*",
+            "**/*.html"
+          ]
+        },
+        "invert_filter": false,
+        "name": "git",
+        "shallow_clone": true,
+        "submodule_folder": null,
+        "url": "git@github.com:gregorskii/gocd-test.git"
+      },
+      "type": "git"
+    }
+  ],
+  "name": "my_pipeline",
+  "origin": {
+    "file": "cruise-config.xml",
+    "type": "local"
+  },
+  "params": [],
+  "stages": [
+    {
+      "approval": {
+        "authorization": {
+          "roles": [],
+          "users": []
+        },
+        "type": "success"
+      },
+      "clean_working_directory": false,
+      "environment_variables": [],
+      "fetch_materials": true,
+      "jobs": [
+        {
+          "artifacts": [
+            {
+              "destination": "result",
+              "source": "target",
+              "type": "build"
+            },
+            {
+              "destination": "res1",
+              "source": "test",
+              "type": "test"
+            }
+          ],
+          "environment_variables": [],
+          "name": "my_job",
+          "properties": null,
+          "resources": [
+            "Linux",
+            "Java"
+          ],
+          "run_instance_count": null,
+          "tabs": [
+            {
+              "name": "cobertura",
+              "path": "target/site/cobertura/*.xml"
+            }
+          ],
+          "tasks": [
+            {
+              "attributes": {
+                "arguments": [
+                  "10"
+                ],
+                "command": "sleep",
+                "on_cancel": {
+                  "attributes": {
+                    "command": "ls",
+                    "working_directory": null
+                  },
+                  "type": "exec"
+                },
+                "run_if": [
+                  "passed"
+                ],
+                "working_directory": null
+              },
+              "type": "exec"
+            }
+          ],
+          "timeout": 0
+        }
+      ],
+      "name": "my_stage",
+      "never_cleanup_artifacts": false
+    }
+  ],
+  "template": null,
+  "timer": null,
+  "tracking_tool": null
+}
