@@ -74,12 +74,7 @@
             "Java"
           ],
           "run_instance_count": null,
-          "tabs": [
-            {
-              "name": "cobertura",
-              "path": "target/site/cobertura/*.xml"
-            }
-          ],
+          "tabs": [],
           "tasks": [
             {
               "attributes": {
