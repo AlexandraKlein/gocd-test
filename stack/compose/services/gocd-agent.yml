@@ -4,6 +4,6 @@ services:
     build:
       context: ../../containers/agent
       args:
-        GOCD_VERSION: ${GOCD_VERSION}
+        GOCD_VERSION: v${GOCD_VERSION}
         GOCD_AGENT_CONTAINER: ${GOCD_AGENT_CONTAINER}
-    image: gocd-agent:${GOCD_VERSION}
+    image: gocd-agent:v${GOCD_VERSION}

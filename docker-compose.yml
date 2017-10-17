@@ -12,6 +12,8 @@ services:
       GO_SERVER_SYSTEM_PROPERTIES: -Xmx4096m
     volumes:
       - godata_server:/godata
+      - ./data/server/log:/var/log/go-server
+      - ./stack/containers/server/config/cruise-config.xml:/etc/go/cruise-config.xml
 
   agent:
     extends:

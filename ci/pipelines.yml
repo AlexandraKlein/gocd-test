@@ -1,0 +1,25 @@
+---
+
+pipelines:
+- group: test
+  pipeline:
+    materials:
+    - attributes: {auto_update: false, branch: master, url: 'git@github.com:gregorskii/gocd-test.git'}
+      type: git
+    name: test-test
+  pipeline_template: test
+
+templates:
+  test:
+    pipeline:
+      stages:
+      - jobs:
+        - artifacts:
+          - {source: dist, type: test}
+          name: test
+          tasks:
+          - attributes:
+              arguments: ['mkdir dist', 'echo "WORKING"']
+              command: /bin/bash
+            type: exec
+        name: Build
