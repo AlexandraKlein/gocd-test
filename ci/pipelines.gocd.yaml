@@ -9,6 +9,6 @@ pipelines:
           build:
             tasks:
             - exec:
-                arguments: [-c, echo "test"]
+                arguments: [-c, echo "thing"]
                 attributes: null
                 command: /bin/bash
