@@ -5,22 +5,21 @@ volumes:
 
 services:
   server:
-    restart: always
     extends:
       file: ./stack/compose/services/gocd-server.yml
       service: server
-    env_file:
-      - go.env
+    environment:
+      GO_SERVER_SYSTEM_PROPERTIES: -Xmx4096m
     volumes:
       - godata_server:/godata
 
   agent:
-    restart: always
     extends:
       file: ./stack/compose/services/gocd-agent.yml
       service: agent
-    env_file:
-      - go.env
+    environment:
+      GO_SERVER_SYSTEM_PROPERTIES: -Xmx4096m
+      GO_SERVER_URL: https://server:8154/go
     volumes:
       - godata_agent:/godata
     links:
