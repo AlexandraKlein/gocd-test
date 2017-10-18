@@ -3,11 +3,5 @@
   <server artifactsdir="artifacts" agentAutoRegisterKey="c9a22903-de4d-4f0f-821d-afd4c5fba080" webhookSecret="bd1b90a1-542e-456b-962d-98d67e392ce0" commandRepositoryLocation="default" serverId="26e5aa43-9ce6-486c-80c9-bdc90e868a8b" />
   <config-repo pluginId="yaml.config.plugin" id="gocd-yaml-config-example">
     <git url="git@github.com:gregorskii/gocd-test.git" />
-    <configuration>
-      <property>
-        <key>file_pattern</key>
-        <value>**/ci/*.yml</value>
-      </property>
-    </configuration>
   </config-repo>
 </cruise>
