@@ -4,12 +4,6 @@
   <config-repos>
     <config-repo pluginId="yaml.config.plugin" id="gocd-yaml-config-example">
       <git url="git@github.com:gregorskii/gocd-test.git" />
-      <configuration>
-        <property>
-          <key>file_pattern</key>
-          <value>**/ci/*.yml</value>
-        </property>
-      </configuration>
     </config-repo>
   </config-repos>
 </cruise>
