@@ -8,4 +8,7 @@ pipelines:
         jobs:
           build:
             tasks:
-            - exec: {command: echo "test"}
+            - arguments: [-c, echo "test"]
+              attributes: null
+              command: /bin/bash
+              type: exec
