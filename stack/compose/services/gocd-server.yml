@@ -5,6 +5,8 @@ services:
       context: ../../containers/server
       args:
         GOCD_VERSION: v${GOCD_VERSION}
+        GOCD_USER: ${GOCD_USER}
+        GOCD_PASSWORD_ENCRYPTED: ${GOCD_PASSWORD_ENCRYPTED}
     image: gocd-server:v${GOCD_VERSION}
     ports:
       - "8153:8153"

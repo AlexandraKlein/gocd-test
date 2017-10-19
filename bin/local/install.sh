@@ -14,4 +14,8 @@ if [ ! -L "${abs_stack_path}/containers/agent/keys" ]; then
   cp -r "${abs_stack_path}/keys" "${abs_stack_path}/containers/agent/keys"
 fi
 
-docker-compose build
+# Combine .env files
+cat .env.insecure > .env
+cat .env.secure >> .env
+
+#docker-compose build
