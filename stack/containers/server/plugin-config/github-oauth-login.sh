@@ -9,7 +9,7 @@ curl "${GOCD_CONFIG_URL}/go/api/admin/plugin_settings" \
     \"configuration\": [
       {
         \"key\": \"server_base_url\",
-        \"value\": \"${GITHUB_OAUTH_REDIRECT_URL}\"
+        \"value\": \"${SITE_URL_SECURE}\"
       },
       {
         \"key\": \"consumer_key\",

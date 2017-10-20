@@ -20,7 +20,7 @@ build_images() {
 
   # Wait for things to finish
   coloredEcho "Waiting a few minutes ..." yellow
-  sleep 120
+  sleep 90
 
   coloredEcho "Running post install on container" green
 
@@ -31,5 +31,5 @@ build_images() {
   coloredEcho "Cleanup" green
 
   # Spin down containers
-  docker-compose -f ${DCF} down
+  docker-compose down
 }
