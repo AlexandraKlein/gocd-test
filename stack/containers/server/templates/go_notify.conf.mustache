@@ -1,0 +1,34 @@
+gocd.slack {
+  login = "someuser"
+  password = "somepassword"
+  server-host = "http://localhost:8153/"
+  api-server-host = "http://localhost:8153/"
+  webhookUrl = "https://hooks.slack.com/services/...."
+
+  slackDisplayName = "gocd-slack-bot"
+  slackUserIconURL = "http://example.com/slack-bot.png"
+  display-console-log-links = true
+  displayMaterialChanges = true
+  process-all-rules = true
+
+  pipelines = [{
+    name = "gocd-slack-build"
+    stage = "build"
+    group = ".*"
+    state = "failed|passed"
+    channel = "#oss-build-group"
+    owners = ["ashwanthkumar"]
+    webhookUrl = "https://hooks.slack.com/services/another-team-hook-id..."
+  },
+  {
+    name = ".*"
+    stage = ".*"
+    state = "failed"
+  }]
+
+  # proxy {
+  #   hostname = "localhost"
+  #   port = "5555"
+  #   type = "socks" # acceptable values are http / socks
+  # }
+}
